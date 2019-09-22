@@ -1,12 +1,13 @@
 import React from 'react';
 import './App.css';
-import {BrowserRouter, Route, Switch} from 'react-router-dom';
+import {Route, Switch} from 'react-router-dom';
 
 import Header from './components/Layout/Header';
 import Posts from './components/Posts';
 
 import Axios from 'axios';
 import {Container, CssBaseline} from "@material-ui/core";
+import {ENTRYPOINT} from "./config/entrypoint";
 
 class App extends React.Component {state = {
   posts: []
@@ -18,7 +19,7 @@ class App extends React.Component {state = {
   }
 
   getPost = async () => {
-   await Axios.get(`https://gofooddy.com/wp-json/wp/v2/posts`)
+   await Axios.get(`${ENTRYPOINT}posts`)
         .then(res => {
           this.setState({
             posts: res.data
